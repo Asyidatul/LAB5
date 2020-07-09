@@ -1,0 +1,127 @@
+# LAB5
+abstract class Cake{
+  String name;
+  String [] topping;
+  String [] toppingorder;
+  double priceSmall;
+  double priceMedium;
+  double priceBig;
+  double totalPrice;
+  int size;
+  int quantity;
+  String getName(String name){
+      this.name=name;
+      return name;
+    }
+  abstract void setCake(String [] topping , double priceSmall, double priceMedium , double priceBig);
+  abstract void printCake();
+  abstract void orderCake(String[] toppingorder,int quantity,int size);
+  abstract void printOrder();
+  
+   
+    
+}
+class BlackForest extends Cake{
+  BlackForest(String name){
+     //this.name=name;
+     super.getName(name);
+   }
+     
+  void setCake(String [] topping , double priceSmall, double priceMedium , double priceBig){
+     this.topping=topping;
+     this.priceSmall=priceSmall;
+     this.priceMedium=priceMedium;
+     this.priceBig=priceBig;  
+    }  
+  String [] gettopping(){
+      return topping;
+  }
+  double getpriceSmall(){
+     return priceSmall;
+  }
+  double getpriceMedium(){
+     return priceMedium;
+  }
+  double getpriceBig(){
+     return priceBig;
+    }
+  void orderCake(String[] toppingorder,int quantity,int size){
+     this.toppingorder=toppingorder;
+     this.quantity=quantity;
+     this.size=size;
+    
+    }
+  String[] gettoppingorder(){
+     return toppingorder;
+    }
+  int getquantity(){
+     return quantity;
+    }
+  int getsize(){
+     return size;
+    }
+  double getSizePrice(){
+    
+        if(size==1){ 
+            return priceSmall;
+        }
+        else if(size==2){
+            return priceMedium;
+        }
+        else{
+            return priceBig;
+        }
+      
+    }
+  double getTotalPrice(){
+     totalPrice=0.00;
+     totalPrice=getSizePrice()* quantity +(gettoppingorder().length*10.00);
+     return totalPrice;
+    }
+  String getSize(){
+     if(size==1){
+        return "Small";
+        }
+     else if(size==2){
+        return "Medium";
+        }
+      else{
+        return "Big";
+        }
+    }
+  void printCake(){
+     System.out.println("-----------------------------------------------------------------------------------------------------");
+     System.out.println("                                    Cake Menu                                                        ");
+     System.out.println("-----------------------------------------------------------------------------------------------------");
+     System.out.println(getName(name)+ " "+ "Cake with available toppings:");
+     System.out.println("1)"+topping[0]);
+     System.out.println("2)"+topping[1]);
+     System.out.println("3)"+topping[2]);
+     System.out.println("");
+     System.out.println("Price:");
+     System.out.println("[1] Small : " + priceSmall);
+     System.out.println("[2] Medium : " + priceMedium);
+     System.out.println("[3] Big : " + priceBig);
+     System.out.println("");
+    }
+  void printOrder(){
+     System.out.println("Cake Order Detail:");
+     System.out.println("-----------------------------------------------------------------------------------------------------");
+     System.out.println("Topping:" + "1)" + toppingorder[0] + "2)"+ toppingorder[1]);
+     System.out.println("Size:"+getSize());
+     System.out.println("-----------------------------------------------------------------------------------------------------");
+     System.out.println("Total Price : " + getTotalPrice());
+     System.out.println("------------------------------------------------------------------------------------------------------");
+    }
+}
+public class TestCake1{ 
+    public static void main(String args[]){ 
+        Cake c = new BlackForest("BlackForest"); 
+        String[] topping = {"Chocolate", "Cherries", "Whipped Cream"}; 
+        c.setCake(topping, 45.00, 65.00, 80.00);
+        c.printCake();
+        String[] order = {"Chocolate", "Cherries"}; 
+        c.orderCake(order, 1, 2);
+        c.printOrder(); 
+    } 
+}
