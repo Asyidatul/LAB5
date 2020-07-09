@@ -23,7 +23,7 @@ abstract class Cake{
 }
 class BlackForest extends Cake{
   BlackForest(String name){
-     //this.name=name;
+     
      super.getName(name);
    }
      
